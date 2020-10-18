@@ -35,6 +35,7 @@ namespace MVC5Demo.Controllers
         public ActionResult Create(Person person)
         {
             person.Id = data.OrderByDescending(u => u.Id).Select(u => u.Id).FirstOrDefault() + 1;//取Id
+            //也可以用person.Id = data.Max(t => t.Id) + 1; 拿Id
             if (ModelState.IsValid)
             {
                 data.Add(person);
