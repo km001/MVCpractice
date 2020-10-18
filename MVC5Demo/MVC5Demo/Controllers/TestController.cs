@@ -31,6 +31,7 @@ namespace MVC5Demo.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Person person)
         {
             person.Id = data.OrderByDescending(u => u.Id).Select(u => u.Id).FirstOrDefault() + 1;//取Id
