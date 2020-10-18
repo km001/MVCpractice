@@ -33,6 +33,7 @@ namespace MVC5Demo.Controllers
         [HttpPost]
         public ActionResult Create(Person person)
         {
+            person.Id = data.OrderByDescending(u => u.Id).Select(u => u.Id).FirstOrDefault() + 1;//取Id
             if (ModelState.IsValid)
             {
                 data.Add(person);
@@ -49,7 +50,7 @@ namespace MVC5Demo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int id,Person person)
+        public ActionResult Edit(int id,Person person)//這裡的id來自url route 只要跟routeconfig的參數名稱依樣就會接到
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +61,25 @@ namespace MVC5Demo.Controllers
             }
 
             return View(data);
+        }
+
+        [HttpGet]//<==Get是預設
+        public ActionResult Details(int id)
+        {
+            return View(data.FirstOrDefault(p => p.Id == id));
+        }
+
+        [HttpGet]//<==Get是預設
+        public ActionResult Delete(int id)//確認用
+        {
+            return View(data.FirstOrDefault(p => p.Id == id));
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection form)//方法名稱與參數依樣，不建議再塞無用變數(FormCollection)
+        {
+            data.Remove(data.FirstOrDefault(p => p.Id == id));
+            return RedirectToAction("Index");
         }
     }
 }
