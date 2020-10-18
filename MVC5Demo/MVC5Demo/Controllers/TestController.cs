@@ -9,16 +9,35 @@ namespace MVC5Demo.Controllers
 {
     public class TestController : Controller
     {
-        // GET: Test
-        public ActionResult Index()
-        {
-            var data = new List<Person>()
+        static List<Person> data = new List<Person>()
             {
                 new Person() { Id = 1, Name = "Will", Age = 18 },
                 new Person() { Id = 2, Name = "Maa", Age = 19 },
                 new Person() { Id = 3, Name = "Ace", Age = 20 },
                 new Person() { Id = 4, Name = "Ite", Age = 21 }
             };
+        // GET: Test
+        public ActionResult Index()
+        {
+
+            return View(data);
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Person person)
+        {
+            if (ModelState.IsValid)
+            {
+                data.Add(person);
+                return RedirectToAction("Index");
+            }
 
             return View(data);
         }
