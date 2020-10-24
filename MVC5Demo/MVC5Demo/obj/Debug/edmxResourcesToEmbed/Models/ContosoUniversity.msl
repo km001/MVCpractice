@@ -15,12 +15,12 @@
     <EntitySetMapping Name="Department">
       <EntityTypeMapping TypeName="ContosoUniversityModel.Department">
         <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
           <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Budget" ColumnName="Budget" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
-          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
