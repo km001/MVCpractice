@@ -98,3 +98,6 @@ C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\EntityFramework.
 C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\EntityFramework.xml
 C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\EntityFramework.SqlServer.xml
 C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\zh-Hant\EntityFramework.resources.dll
+C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\Omu.ValueInjecter.dll
+C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\Omu.ValueInjecter.xml
+C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\zh-Hant\EntityFramework.SqlServer.resources.dll

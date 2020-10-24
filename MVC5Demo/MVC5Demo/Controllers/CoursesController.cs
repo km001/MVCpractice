@@ -17,7 +17,7 @@ namespace MVC5Demo.Controllers
         // GET: Courses
         public ActionResult Index()
         {
-            var course = db.Course.Include(c => c.Department);
+            var course = db.Course.Include(c => c.Department);//查詢計畫，會把兩個table join再一起 比較大但一個query
             return View(course.ToList());
         }
 
@@ -48,7 +48,7 @@ namespace MVC5Demo.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CourseID,Title,Credits,DepartmentID")] Course course)
+        public ActionResult Create([Bind(Include = "CourseID,Title,Credits,DepartmentID")] Course course)//[Bind(Include = "CourseID,Title,Credits,DepartmentID")表示有只Bind這些欄位
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace MVC5Demo.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;
+                db.Entry(course).State = EntityState.Modified;//像這樣直接放進去不建議，惡意人士能另外塞直 建議ViewModel
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

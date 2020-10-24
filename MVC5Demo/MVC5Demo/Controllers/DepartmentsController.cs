@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Http.Results;
 using System.Web.Mvc;
 using MVC5Demo.Models;
+using Omu.ValueInjecter;
 
 namespace MVC5Demo.Controllers
 {
@@ -43,8 +44,8 @@ namespace MVC5Demo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Department department)
-        {
+        public ActionResult Create(Department department)//目前View上沒RowVersion 但萬一有人傳多的欄位，可試圖調整 這種攻擊叫OverPosting
+        {//另個解決方法 設計出給View用的Model 叫ViewModel 間接
             if (ModelState.IsValid)
             {
                 db.Department.Add(department);//物件寫到集合
@@ -71,16 +72,19 @@ namespace MVC5Demo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int ID, Department department)
+        public ActionResult Edit(int ID, DepartmentEdit department)
         {
             if (ModelState.IsValid)
             {
                 var item = db.Department.Find(ID);//有變更追蹤的機制
 
-                item.Name = department.Name;
-                item.Budget = department.Budget;
-                item.StartDate = department.StartDate;
-                item.InstructorID = department.InstructorID;//所以直接對物件操作就OK
+                item.InjectFrom(department);//名子一樣copy過去
+
+                //item.Name = department.Name;
+                //item.Budget = department.Budget;
+                //item.StartDate = department.StartDate;
+                //item.InstructorID = department.InstructorID;//所以直接對物件操作就OK
+                //一個個只把要更新的打進去，比較不怕OverPosting，高可讀性(解釋意圖intension) 代價是多欄位時比較麻煩
 
                 db.SaveChanges();
 
@@ -96,7 +100,7 @@ namespace MVC5Demo.Controllers
 
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
