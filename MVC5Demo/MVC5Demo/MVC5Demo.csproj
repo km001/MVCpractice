@@ -150,6 +150,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CourseEdit.cs" />
     <Compile Include="Models\DepartmentEdit.cs" />
     <Compile Include="Models\ContosoUniversity.Context.cs">
       <AutoGen>True</AutoGen>

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5Demo.Models;
+using Omu.ValueInjecter;
+using Omu.ValueInjecter;
 
 namespace MVC5Demo.Controllers
 {
@@ -48,11 +50,13 @@ namespace MVC5Demo.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CourseID,Title,Credits,DepartmentID")] Course course)//[Bind(Include = "CourseID,Title,Credits,DepartmentID")表示有只Bind這些欄位
+        public ActionResult Create(CourseEdit course)//[Bind(Include = "CourseID,Title,Credits,DepartmentID")表示有只Bind這些欄位
         {
             if (ModelState.IsValid)
             {
-                db.Course.Add(course);
+                Course item = new Course();
+                item.InjectFrom(course);
+                db.Course.Add(item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -82,11 +86,15 @@ namespace MVC5Demo.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CourseID,Title,Credits,DepartmentID")] Course course)
+        public ActionResult Edit(int ID, CourseEdit course)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;//像這樣直接放進去不建議，惡意人士能另外塞直 建議ViewModel
+                //db.Entry(course).State = EntityState.Modified;//像這樣直接放進去不建議，惡意人士能另外塞直 建議ViewModel
+                Course item = db.Course.Find(ID);
+
+                item.InjectFrom(course);//名子一樣copy過去
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
