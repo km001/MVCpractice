@@ -44,11 +44,13 @@ namespace MVC5Demo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Department department)//目前View上沒RowVersion 但萬一有人傳多的欄位，可試圖調整 這種攻擊叫OverPosting
+        public ActionResult Create(DepartmentEdit department)//目前View上沒RowVersion 但萬一有人傳多的欄位，可試圖調整 這種攻擊叫OverPosting
         {//另個解決方法 設計出給View用的Model 叫ViewModel 間接
             if (ModelState.IsValid)
             {
-                db.Department.Add(department);//物件寫到集合
+                Department item = new Department();
+                item.InjectFrom(department);
+                db.Department.Add(item);//物件寫到集合
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
