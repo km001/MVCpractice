@@ -23,8 +23,9 @@ namespace MVC5Demo.Models
     
         public int DepartmentID { get; set; }
         public string Name { get; set; }
+        [DisplayFormat(DataFormatString = "{0:0}", ApplyFormatInEditMode = true)]
         public decimal Budget { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date)]//，這個拿掉會沒有datepick
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",ApplyFormatInEditMode = true)]
         public System.DateTime StartDate { get; set; }
         public Nullable<int> InstructorID { get; set; }
