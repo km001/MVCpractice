@@ -35,7 +35,7 @@ namespace MVC5Demo.Controllers
 
         public ActionResult CoursesReport1()//多對多
         {
-            var data = from c in db.Course
+            var data = (from c in db.Course
                        select new CoursesReport1VM
                        {
                            CourseID = c.CourseID,
@@ -44,7 +44,7 @@ namespace MVC5Demo.Controllers
                            TeacherCount = c.Teachers.Count,
                            AvgGrade = c.Enrollments.Where(e => e.Grade.HasValue).Average(p => p.Grade.Value)//DB設計有問題時，如允許空直 不能Average().Value 另個問題是有沒隊到Enrollments的狀況
 
-                       };
+                       }).ToList();
             //第一種
             ViewBag.SQL = sb.ToString();
             return View(data);//不好 一堆subquery
@@ -56,7 +56,7 @@ namespace MVC5Demo.Controllers
 FROM dbo.Course 
 LEFT JOIN dbo.CourseInstructor ON dbo.Course.CourseID = dbo.CourseInstructor.CourseID 
 LEFT JOIN dbo.Enrollment ON dbo.Course.CourseID = dbo.Enrollment.CourseID
-GROUP BY dbo.Course.CourseID, Course.Title");//只要能對應 就能產出
+GROUP BY dbo.Course.CourseID, Course.Title").ToList();//只要能對應 就能產出
             ViewBag.SQL = sb.ToString();
             //第二種
             return View("CoursesReport1",data);//第二種 View("CoursesReport1", 可使用指定View, SQL Query Designer
@@ -69,7 +69,7 @@ FROM dbo.Course
 LEFT JOIN dbo.CourseInstructor ON dbo.Course.CourseID = dbo.CourseInstructor.CourseID 
 LEFT JOIN dbo.Enrollment ON dbo.Course.CourseID = dbo.Enrollment.CourseID
 WHERE Course.CourseID = @p0
-GROUP BY dbo.Course.CourseID, Course.Title", id);//一定要參數化，不能組字串 ，自動帶的從p0開始
+GROUP BY dbo.Course.CourseID, Course.Title", id).ToList();//一定要參數化，不能組字串 ，自動帶的從p0開始
             ViewBag.SQL = sb.ToString();
             //第二種
             return View("CoursesReport1", data);//第二種 View("CoursesReport1", 可使用指定View, SQL Query Designer
@@ -93,7 +93,7 @@ GROUP BY dbo.Course.CourseID, Course.Title", id);//一定要參數化，不能�
 
         public ActionResult CoursesReport5_1(int id)//一筆
         {
-            var data = db.Database.SqlQuery<CoursesReport1VM>("EXEC GetCourseReport @p0", id).ToList();//自己轉 ToList強迫先執行SQL，不然不ToList直接回傳會沒有東西因為沒執行
+            var data = db.Database.SqlQuery<CoursesReport1VM>("EXEC GetCourseReport @p0", id).ToList();//自己轉 ToList強迫先執行SQL，不然不ToList直接回傳會ReportsController sb.ToString()沒有東西因為沒執行
             ViewBag.SQL = sb.ToString();
             //第五種
             return View("CoursesReport1", data);//
