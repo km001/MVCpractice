@@ -28,6 +28,7 @@
     <Property Name="StartDate" Type="datetime" />
     <Property Name="InstructorID" Type="int" />
     <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Enrollment">
     <Key>

@@ -15,6 +15,7 @@
     <EntitySetMapping Name="Department">
       <EntityTypeMapping TypeName="ContosoUniversityModel.Department">
         <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
           <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
           <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
           <ScalarProperty Name="Name" ColumnName="Name" />

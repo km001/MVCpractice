@@ -14,32 +14,39 @@ namespace MVC5Demo.Controllers
 {
     public class DepartmentsController : Controller
     {
-        ContosoUniversityEntities db = new ContosoUniversityEntities();
+        DepartmentRepository repo;
+        PersonRepository repoPerson;
+        public DepartmentsController()
+        {
+            repo = RepositoryHelper.GetDepartmentRepository();
+            repoPerson = RepositoryHelper.GetPersonRepository(repo.UnitOfWork);
+        }
         // GET: Departments
         public ActionResult Index()
         {
-            return View(db.Department);//.ToList() 直接db.Department本身是dbSet 第一次查詢才會
+            return View(repo.All());//.ToList() 直接db.Department本身是dbSet 第一次查詢才會
         }//存取資料庫資料
 
         public ActionResult Details(int? id)
         {
-            if (!id.HasValue)
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var dept = repo.GetOne(id.Value);
+
+            if (dept == null)
             {
                 return HttpNotFound();
             }
 
-            Department department = db.Department.Find(id);
-            if (department == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(department);
+            return View(dept);
         }
 
         public ActionResult Create()
         {
-            ViewBag.InstructorID = new SelectList(db.Person.OrderBy(e => e.FirstName), "ID", "FirstName");
+            ViewBag.InstructorID = new SelectList(repoPerson.All(), "ID", "FirstName");
             return View();
         }
 
@@ -48,70 +55,69 @@ namespace MVC5Demo.Controllers
         {//另個解決方法 設計出給View用的Model 叫ViewModel 間接
             if (ModelState.IsValid)
             {
-                Department item = new Department();
+                var item = new Department();
                 item.InjectFrom(department);
-                db.Department.Add(item);//物件寫到集合
-                db.SaveChanges();
+                repo.Add(item);
+                repo.UnitOfWork.Commit();
 
                 return RedirectToAction("Index");
             }
-            ViewBag.InstructorID = new SelectList(db.Person.OrderBy(e => e.FirstName), "ID", "FirstName");
 
-            return View();
+            ViewBag.InstructorID = new SelectList(repoPerson.All().OrderBy(p => p.FirstName), "ID", "FirstName");
+
+            return View(department);
         }
 
-        public ActionResult Edit(int? ID)
+        public ActionResult Edit(int? id)
         {
-            if (!ID.HasValue)
+            if (!id.HasValue)
             {
                 return HttpNotFound();
             }
-            var item = db.Department.Find( ID.Value);
 
-            ViewBag.InstructorID = new SelectList(db.Person.OrderBy(e => e.FirstName), "ID", "FirstName", item.InstructorID);
+            var dept = repo.GetOne(id.Value);
 
-            return View(item);
+            ViewBag.InstructorID = new SelectList(repoPerson.All().OrderBy(p => p.FirstName), "ID", "FirstName", dept.InstructorID);
+
+            return View(dept);
         }
 
         [HttpPost]
-        public ActionResult Edit(int ID, DepartmentEdit department)
+        public ActionResult Edit(int id, DepartmentEdit department)
         {
             if (ModelState.IsValid)
             {
-                var item = db.Department.Find(ID);//有變更追蹤的機制
+                var item = repo.GetOne(id);
 
-                item.InjectFrom(department);//名子一樣copy過去
+                item.InjectFrom(department);
 
-                //item.Name = department.Name;
-                //item.Budget = department.Budget;
-                //item.StartDate = department.StartDate;
-                //item.InstructorID = department.InstructorID;//所以直接對物件操作就OK
-                //一個個只把要更新的打進去，比較不怕OverPosting，高可讀性(解釋意圖intension) 代價是多欄位時比較麻煩
-
-                db.SaveChanges();
+                repo.UnitOfWork.Commit();
 
                 return RedirectToAction("Index");
             }
 
-            var dept = db.Department.Find(ID);
+            var dept = repo.GetOne(id);
 
-            ViewBag.InstructorID = new SelectList(db.Person.OrderBy(e => e.FirstName), "ID", "FirstName", dept.InstructorID);
+            ViewBag.InstructorID = new SelectList(repoPerson.All(), "ID", "FirstName", dept.InstructorID);
 
             return View(dept);
         }
 
         public ActionResult Delete(int? id)
         {
-            if (!id.HasValue)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Department.Find(id);
-            if (department == null)
+
+            var dept = repo.GetOne(id.Value);
+
+            if (dept == null)
             {
                 return HttpNotFound();
             }
-            return View(department);
+
+            return View(dept);
         }
 
         // POST: Departments/Delete/5
@@ -119,9 +125,10 @@ namespace MVC5Demo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Department department = db.Department.Find(id);
-            db.Department.Remove(department);
-            db.SaveChanges();
+            var dept = repo.GetOne(id);
+            repo.Delete(dept);
+            repo.UnitOfWork.Commit();
+
             return RedirectToAction("Index");
         }
 
@@ -129,7 +136,7 @@ namespace MVC5Demo.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
             }
             base.Dispose(disposing);
         }
