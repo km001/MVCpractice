@@ -210,9 +210,19 @@
       <Parameter Name="InstructorID" Mode="In" Type="Int32" />
       <Parameter Name="RowVersion_Original" Mode="In" Type="Binary" />
     </FunctionImport>
+    <FunctionImport Name="GetCourseReport" ReturnType="Collection(ContosoUniversityModel.GetCourseReport_Result)">
+      <Parameter Name="CourseID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="Department_Insert_Result">
     <Property Type="Int32" Name="DepartmentID" Nullable="false" />
     <Property Type="Binary" Name="RowVersion" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="GetCourseReport_Result">
+    <Property Type="Int32" Name="CourseID" Nullable="false" />
+    <Property Type="String" Name="CourseName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Enrollments" Nullable="true" />
+    <Property Type="Int32" Name="TeacherCount" Nullable="true" />
+    <Property Type="Double" Name="AvgGrade" Nullable="true" />
   </ComplexType>
 </Schema>

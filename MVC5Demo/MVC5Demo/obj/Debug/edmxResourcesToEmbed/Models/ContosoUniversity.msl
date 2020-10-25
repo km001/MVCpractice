@@ -104,5 +104,16 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Department_Update" FunctionName="ContosoUniversityModel.Store.Department_Update" />
+    <FunctionImportMapping FunctionImportName="GetCourseReport" FunctionName="ContosoUniversityModel.Store.GetCourseReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ContosoUniversityModel.GetCourseReport_Result">
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="Enrollments" ColumnName="Enrollments" />
+          <ScalarProperty Name="TeacherCount" ColumnName="TeacherCount" />
+          <ScalarProperty Name="AvgGrade" ColumnName="AvgGrade" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

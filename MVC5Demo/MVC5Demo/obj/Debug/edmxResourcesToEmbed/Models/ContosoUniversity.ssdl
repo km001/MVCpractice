@@ -203,6 +203,9 @@
     <Parameter Name="InstructorID" Type="int" Mode="In" />
     <Parameter Name="RowVersion_Original" Type="timestamp" Mode="In" />
   </Function>
+  <Function Name="GetCourseReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CourseID" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="ContosoUniversityModelStoreContainer">
     <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseInstructor" EntityType="Self.CourseInstructor" Schema="dbo" store:Type="Tables" />

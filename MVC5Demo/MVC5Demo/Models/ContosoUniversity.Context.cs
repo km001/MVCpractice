@@ -98,5 +98,14 @@ namespace MVC5Demo.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<byte[]>("Department_Update", departmentIDParameter, nameParameter, budgetParameter, startDateParameter, instructorIDParameter, rowVersion_OriginalParameter);
         }
+    
+        public virtual ObjectResult<GetCourseReport_Result> GetCourseReport(Nullable<int> courseID)
+        {
+            var courseIDParameter = courseID.HasValue ?
+                new ObjectParameter("CourseID", courseID) :
+                new ObjectParameter("CourseID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetCourseReport_Result>("GetCourseReport", courseIDParameter);
+        }
     }
 }
