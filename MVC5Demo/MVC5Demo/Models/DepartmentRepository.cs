@@ -18,6 +18,7 @@ namespace MVC5Demo.Models
 
         public override void Delete(Department entity)
         {
+            this.UnitOfWork.Context.Configuration.ValidateOnSaveEnabled = false;//迴避舊資料不符合新驗證而導致不能更新成刪除狀態的狀況
             entity.IsDeleted = true;
         }
     }
