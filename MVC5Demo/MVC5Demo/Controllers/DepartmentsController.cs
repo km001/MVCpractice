@@ -12,7 +12,7 @@ using Omu.ValueInjecter;
 
 namespace MVC5Demo.Controllers
 {
-    public class DepartmentsController : Controller
+    public class DepartmentsController : BaseController
     {
         DepartmentRepository repo;
         PersonRepository repoPerson;

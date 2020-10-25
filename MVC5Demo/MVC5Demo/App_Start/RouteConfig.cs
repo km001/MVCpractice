@@ -16,6 +16,7 @@ namespace MVC5Demo
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
+                //url: "{controller}/{action}/{*id}",<= *表示萬用路由，把{controller}/{action}/之後?之前當一個參數
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }

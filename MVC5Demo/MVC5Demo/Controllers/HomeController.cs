@@ -6,8 +6,13 @@ using System.Web.Mvc;
 
 namespace MVC5Demo.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+        protected override void HandleUnknownAction(string actionName)
+        {
+            //base.HandleUnknownAction(actionName);// 元預設動作
+            this.Redirect("/?redir=" + actionName).ExecuteResult(ControllerContext);//轉到首頁，並提示從哪轉
+        }
         public ActionResult Index()
         {
             return View();
