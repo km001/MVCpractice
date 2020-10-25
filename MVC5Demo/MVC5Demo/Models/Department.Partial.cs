@@ -18,7 +18,7 @@ namespace MVC5Demo.Models
 
     public partial class DepartmentMetaData
     {
-        [Required]
+        //[Required]
         public int DepartmentID { get; set; }
 
         [Required]

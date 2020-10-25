@@ -10,6 +10,7 @@ namespace MVC5Demo.Models
         {
         }
 
+        public int DepartmentID { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -20,7 +21,7 @@ namespace MVC5Demo.Models
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (this.Name != "Will" && this.Budget < 100)
+            if (this.Name != "Will" && this.Budget > 100)
             {
                 yield return new ValidationResult("您的預算不足", new string[] { "Budget" });
             }
