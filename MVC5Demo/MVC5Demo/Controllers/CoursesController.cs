@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using MVC5Demo.Models;
 using Omu.ValueInjecter;
-using Omu.ValueInjecter;
 
 namespace MVC5Demo.Controllers
 {
