@@ -367,6 +367,7 @@
     <Content Include="Views\MB\ReadTempData.cshtml" />
     <Content Include="Views\MB\CourseBatchEdit.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
