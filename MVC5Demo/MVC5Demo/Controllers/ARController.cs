@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC5Demo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,13 @@ namespace MVC5Demo.Controllers
 {
     public class ARController : BaseController
     {
+        DepartmentRepository repo;
         // GET: AR
+        public ARController()
+        {
+            repo = RepositoryHelper.GetDepartmentRepository();
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -45,6 +52,20 @@ namespace MVC5Demo.Controllers
             {
                 return File(Server.MapPath("~/Content/bc3b2d8271f43924543571fed081b54e.png"), "image/png");//只是打開
             }
+        }
+
+        public ActionResult JsonTest()
+        {
+            repo.UnitOfWork.Context.Configuration.LazyLoadingEnabled = false;
+            var data = repo.GetOne(1);
+            return Json(data,JsonRequestBehavior.AllowGet);//得下AllowGet才能接get要求
+        }
+
+        [HttpPost]//action filter <= 讓action只能吃HttpPost
+        public ActionResult JsonTest2()
+        {
+            var data = repo.GetOne(1);
+            return Json(data);//Json 沒AllowGet，還是可以post等get以外的，
         }
     }
 }
