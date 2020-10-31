@@ -64,6 +64,7 @@ namespace MVC5Demo.Controllers
         [HttpPost]//action filter <= 讓action只能吃HttpPost
         public ActionResult JsonTest2()
         {
+            repo.UnitOfWork.Context.Configuration.LazyLoadingEnabled = false;
             var data = repo.GetOne(1);
             return Json(data);//Json 沒AllowGet，還是可以post等get以外的，
         }
