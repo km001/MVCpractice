@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace MVC5Demo.Controllers
 {
-    public class ParpareDepartmentListForDropDownListAttribute : ActionFilterAttribute
+    public class PrepareDepartmentListForDropDownListAttribute : ActionFilterAttribute
     {
         DepartmentRepository repo = RepositoryHelper.GetDepartmentRepository();
 

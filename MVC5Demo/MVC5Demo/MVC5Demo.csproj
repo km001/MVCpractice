@@ -235,7 +235,7 @@
     <Compile Include="Models\OfficeAssignmentRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ParpareDepartmentListForDropDownListAttribute.cs" />
+    <Compile Include="Models\PrepareDepartmentListForDropDownListAttribute.cs" />
     <Compile Include="Models\Person.cs">
       <DependentUpon>ContosoUniversity.tt</DependentUpon>
     </Compile>
