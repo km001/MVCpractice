@@ -4,6 +4,7 @@ namespace MVC5Demo.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Script.Serialization;
 
     [MetadataType(typeof(DepartmentMetaData))]
     public partial class Department : IValidatableObject
@@ -35,7 +36,7 @@ namespace MVC5Demo.Models
         public Nullable<int> InstructorID { get; set; }
         //[Required]
         public byte[] RowVersion { get; set; }
-        //[JsonIgnore]
+        [ScriptIgnore]
         public virtual ICollection<Course> Course { get; set; }//留著沒差，但可註解 buddy是認名字對
         public virtual Person Person { get; set; }
     }
