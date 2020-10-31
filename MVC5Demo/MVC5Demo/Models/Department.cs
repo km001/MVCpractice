@@ -34,6 +34,8 @@ namespace MVC5Demo.Models
         [ScriptIgnore(ApplyToOverrides = true)]
         [JsonIgnore]
         public virtual ICollection<Course> Course { get; set; }
+        [ScriptIgnore(ApplyToOverrides = true)]
+        [JsonIgnore]
         public virtual Person Person { get; set; }
     }
 }
