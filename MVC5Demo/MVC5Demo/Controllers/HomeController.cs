@@ -33,5 +33,14 @@ namespace MVC5Demo.Controllers
 
             return View();
         }
+
+#if !DEBUG
+        [NonAction]
+#endif
+        [LocalOnly]
+        public ActionResult Debug()
+        {
+            return Content("DEBUG");
+        }
     }
 }
