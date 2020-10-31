@@ -40,6 +40,7 @@ namespace MVC5Demo.Models
         public string Title { get; set; }
         [Required]
         [Range(1, 5)]
+        [MustBeEven]
         public int Credits { get; set; }
 
         [Required]

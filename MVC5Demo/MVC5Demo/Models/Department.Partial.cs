@@ -13,7 +13,7 @@ namespace MVC5Demo.Models
         {
             if (this.Name != "Will" && this.Budget > 100)
             {
-                throw new ArgumentException("ERROR");//測試用
+                //throw new ArgumentException("ERROR");//測試用
 
                 yield return new ValidationResult("您的預算不足", new string[] { "Budget" });
             }
