@@ -44,6 +44,7 @@ namespace MVC5Demo.Controllers
             return View();
         }
 
+        [ParpareDepartmentListForDropDownList]
         public ActionResult CourseBatchEdit(bool IsEditMode = false)
         {
             ViewData.Model = repoCourse.All();
@@ -53,6 +54,7 @@ namespace MVC5Demo.Controllers
             return View();
         }
 
+        [ParpareDepartmentListForDropDownList]
         [HttpPost]
         public ActionResult CourseBatchEdit(List<CourseBatchEditVM> data, bool IsEditMode = false)
         {
