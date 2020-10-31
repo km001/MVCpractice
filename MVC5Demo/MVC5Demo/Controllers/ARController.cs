@@ -71,12 +71,12 @@ namespace MVC5Demo.Controllers
             return Json(data);//Json 沒AllowGet，還是可以post等get以外的，
         }
 
-        //public ActionResult JsonTest3()
-        //{
-        //    var data = repo.GetOne(1);
-        //    Response.ContentType = "text/json";
-        //    return Content(JsonConvert.SerializeObject(data));
-        //}
+        public ActionResult JsonTest3()
+        {
+            var data = repo.GetOne(1);
+            Response.ContentType = "text/json";
+            return Content(JsonConvert.SerializeObject(data));
+        }
 
         public ActionResult JsonTest4()
         {
