@@ -186,6 +186,7 @@
     <Compile Include="Models\Department.cs">
       <DependentUpon>ContosoUniversity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DepartmentJson.cs" />
     <Compile Include="Models\DepartmentRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>

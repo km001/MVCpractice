@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+using Omu.ValueInjecter;
 
 namespace MVC5Demo.Controllers
 {
@@ -67,6 +69,21 @@ namespace MVC5Demo.Controllers
             repo.UnitOfWork.Context.Configuration.LazyLoadingEnabled = false;
             var data = repo.GetOne(1);
             return Json(data);//Json 沒AllowGet，還是可以post等get以外的，
+        }
+
+        //public ActionResult JsonTest3()
+        //{
+        //    var data = repo.GetOne(1);
+        //    Response.ContentType = "text/json";
+        //    return Content(JsonConvert.SerializeObject(data));
+        //}
+
+        public ActionResult JsonTest4()
+        {
+            DepartmentJson rtn = new DepartmentJson();
+            var data = repo.GetOne(1);
+            rtn.InjectFrom(data);
+            return Json(rtn, JsonRequestBehavior.AllowGet);
         }
     }
 }
