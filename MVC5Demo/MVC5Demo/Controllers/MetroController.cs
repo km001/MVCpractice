@@ -13,5 +13,10 @@ namespace MVC5Demo.Controllers
         {
             return View();
         }
+
+        public ActionResult Messages()
+        {
+            return View();
+        }
     }
 }
