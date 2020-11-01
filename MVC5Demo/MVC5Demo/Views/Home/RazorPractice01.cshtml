@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "RazorPractice01";
-    var data = new int[] { 1, 2, 3, 4, 5 };
+
 }
 
 <h2>RazorPractice01</h2>
@@ -9,7 +9,7 @@
 @{
 
 }
-<p>test1:@foreach (int i in data)
+<p>test1:@foreach (int i in ViewBag.data)
 {@i}</p>
 <h3>test2 (string.join):</h3>
 @{
@@ -24,7 +24,7 @@
 }
 <p>
     test3:<ul>
-        @foreach (int i in data)
+        @foreach (int i in ViewBag.data)
         {
             <li>@i</li>
 }

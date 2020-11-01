@@ -36,6 +36,8 @@ namespace MVC5Demo.Controllers
 
         public ActionResult RazorPractice01()
         {
+            var data = new int[] { 1, 2, 3, 4, 5 };
+            ViewBag.data = data;
             return PartialView();
         }
 
