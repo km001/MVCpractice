@@ -34,6 +34,11 @@ namespace MVC5Demo.Controllers
             return View();
         }
 
+        public ActionResult RazorPractice01()
+        {
+            return PartialView();
+        }
+
 #if !DEBUG
         [NonAction]
 #endif

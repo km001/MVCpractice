@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "RazorPractice01";
+    var data = new int[] { 1, 2, 3, 4, 5 };
+}
+
+<h2>RazorPractice01</h2>
+
+@{
+
+}
+<p>test1:@foreach (int i in data) { @i }</p>
+<p>test2:@foreach (int i in data){
+    string k = i.ToString()+" ";
+    @k
+}</p>
+<p>test3:<ul>
+    @foreach (int i in data)
+    { <li>@i</li>}</ul>
+</p>

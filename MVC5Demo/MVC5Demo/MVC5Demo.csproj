@@ -369,6 +369,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Shared\ErrorDbEntityValidationException.cshtml" />
+    <Content Include="Views\Home\RazorPractice01.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
