@@ -101,3 +101,7 @@ C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\Omu.ValueInjecte
 C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\Omu.ValueInjecter.xml
 C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\zh-Hant\EntityFramework.SqlServer.resources.dll
 C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\obj\Debug\MVC5Demo.csprojAssemblyReference.cache
+C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\PagedList.dll
+C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\PagedList.Mvc.dll
+C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\PagedList.xml
+C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\PagedList.Mvc.xml
