@@ -9,12 +9,24 @@
 @{
 
 }
-<p>test1:@foreach (int i in data) { @i }</p>
-<p>test2:@foreach (int i in data){
-    string k = i.ToString()+" ";
-    @k
-}</p>
-<p>test3:<ul>
-    @foreach (int i in data)
-    { <li>@i</li>}</ul>
+<p>test1:@foreach (int i in data)
+{@i}</p>
+<h3>test2 (string.join):</h3>
+@{
+    var q = string.Join(" ", ViewBag.data);
+    @q
+}
+
+<h3>test3 (foreach):</h3>
+@foreach (var value in ViewBag.data)
+{
+    @(value + " ")
+}
+<p>
+    test3:<ul>
+        @foreach (int i in data)
+        {
+            <li>@i</li>
+}
+    </ul>
 </p>
