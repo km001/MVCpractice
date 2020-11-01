@@ -547,6 +547,7 @@
     <Content Include="Views\Metro\_Layout.cshtml" />
     <Content Include="Views\Metro\Index.cshtml" />
     <Content Include="Views\Metro\Messages.cshtml" />
+    <Content Include="Views\Departments\CoursesUnderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
