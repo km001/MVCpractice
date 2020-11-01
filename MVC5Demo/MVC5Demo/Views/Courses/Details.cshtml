@@ -1,6 +1,10 @@
 ﻿@model MVC5Demo.Models.Course
 
 @{
+    if (IsAjax)
+    {
+        Layout = null;
+    }//不建議用Bundle的原因
     ViewBag.Title = "Details";
 }
 
