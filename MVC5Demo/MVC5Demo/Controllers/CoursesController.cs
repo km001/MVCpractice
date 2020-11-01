@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC5Demo.Models;
 using Omu.ValueInjecter;
+using X.PagedList;
 
 namespace MVC5Demo.Controllers
 {
@@ -17,10 +18,12 @@ namespace MVC5Demo.Controllers
         private ContosoUniversityEntities db = new ContosoUniversityEntities();
 
         // GET: Courses
-        public ActionResult Index()
+        public ActionResult Index(int pageNo = 1)
         {
-            var course = db.Course.Include(c => c.Department);//查詢計畫，會把兩個table join再一起 比較大但一個query
-            return View(course.ToList());
+            //var course = db.Course.Include(c => c.Department);//查詢計畫，會把兩個table join再一起 比較大但一個query
+            //return View(course.ToList());
+            var course = db.Course.Include(c => c.Department).OrderBy(p => p.CourseID).ToPagedList(pageNo, 5);
+            return View(course);
         }
 
         // GET: Courses/Details/5

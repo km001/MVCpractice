@@ -105,3 +105,8 @@ C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\PagedList.dll
 C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\PagedList.Mvc.dll
 C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\PagedList.xml
 C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\PagedList.Mvc.xml
+C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\System.Text.Encodings.Web.dll
+C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\X.PagedList.dll
+C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\X.PagedList.Mvc.dll
+C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\X.PagedList.Web.Common.dll
+C:\暫時工作區\筆記\MVC\MVCpractice\MVC5Demo\MVC5Demo\bin\System.Text.Encodings.Web.xml
